@@ -38,84 +38,166 @@
 
 
 \begin{document}
- 
+\section{Gestion d'attributs continus} 
+
+
+Soit l'ensemble de données suivant :
 \begin{center}
-\begin{tabular}{|c|}
+\begin{tabular}{| c | c | c | c |}
 \hline
-Compte rendu de la présentation\\du 19\//03\//2018\textsl{•}\\
+Température & Faiblesse & Toux & Malade ?\\
+\hline
+10 & 0 & oui & Angines\\
+\hline
+30 & 10 & non & Non\_malade\\
+\hline
+20 & 10 & oui & Angines\\
 \hline
 
+30 & 10 & non & Non\_malade\\
+\hline
+
+40 & 0 & non & Fievre\\
+\hline
+
+20 & 10 & oui & Angines\\
+\hline
+\end{tabular}
+\end{center}
+L'algorithme C4.5 gère les attribut continus de la manière suivante : 
+\begin{itemize}
+\item Étape 01 : Trier les valeur de l'attribut\\
+Ce qui donnera le résultat suivant : 
+\begin{tabular}{| c | c | c | c |}
+\hline
+10 & 20 & 30 & 40\\
+\hline
+\end{tabular}
+
+\item Étape 02 : Créer un seuil a partir de chaque valeurs consécutives, ce qui donnera le résultat suivant :\\
+$\frac{10+20}{2} = 15, \ \frac{20+30}{2} = 25, \ \frac{30+40}{2} = 35$
+
+\item Etape 03 : Calculer la quantité d'information apporté par chacune des valeurs précédente, en transformant les valeurs initiales de l'attribut en valeurs $(\ge VAL)$ ou $(< VAL)$
+\begin{enumerate}
+\item Valeur : 15
+
+
+\begin{center}
+\begin{tabular}{| c | c | c | c |}
+\hline
+Température & Faiblesse & Toux & Malade ?\\
+\hline
+$< 15$ & 0 & oui & Angines\\
+\hline
+$\ge 15$ & 10 & non & Non\_malade\\
+\hline
+$\ge 15$ & 10 & oui & Angines\\
+\hline
+
+$\ge 15$ & 10 & non & Non\_malade\\
+\hline
+
+$\ge 15$ & 0 & non & Fievre\\
+\hline
+
+$\ge 15$ & 10 & oui & Angines\\
+\hline
+\end{tabular}
+\end{center}
+
+Entropie(Température) = $\frac{1}{6}( - \frac{1}{1}Log_2(\frac{1}{1}))+\frac{5}{6}(- (\frac{1}{5}
+Log_2(\frac{1}{5})+ \frac{2}{5}Log_2(\frac{2}{5})+\frac{2}{5}Log_2(\frac{2}{5}))$\\
+Entropie(Température) = 1.27
+
+\item Valeur : 25 
+
+\begin{center}
+\begin{tabular}{| c | c | c | c |}
+\hline
+Température & Faiblesse & Toux & Malade ?\\
+\hline
+$<25$ & 0 & oui & Angines\\
+\hline
+$\ge 25$ & 10 & non & Non\_malade\\
+\hline
+$<25$ & 10 & oui & Angines\\
+\hline
+
+$\ge 25$ & 10 & non & Non\_malade\\
+\hline
+
+$\ge 25$ & 0 & non & Fievre\\
+\hline
+
+$<25$ & 10 & oui & Angines\\
+\hline
+\end{tabular}
+\end{center}
+
+Entropie(Température) = $\frac{3}{6}( - \frac{3}{3}Log_2(\frac{3}{3}))+\frac{3}{6}(- (\frac{1}{3}
+Log_2(\frac{1}{3})+ \frac{2}{3}Log_2(\frac{2}{3}))$\\
+Entropie(Température) = 0.48
+
+
+
+
+\item Valeur : 35
+
+
+\begin{center}
+\begin{tabular}{| c | c | c | c |}
+\hline
+Température & Faiblesse & Toux & Malade ?\\
+\hline
+$<35$ & 0 & oui & Angines\\
+\hline
+$<35$ & 10 & non & Non\_malade\\
+\hline
+$<35$ & 10 & oui & Angines\\
+\hline
+
+$<35$ & 10 & non & Non\_malade\\
+\hline
+
+$\ge 30$ & 0 & non & Fievre\\
+\hline
+
+$<35$ & 10 & oui & Angines\\
+\hline
+\end{tabular}
+\end{center}
+
+Entropie(Température) = $\frac{1}{6}( - \frac{1}{1}Log_2(\frac{1}{1}))+\frac{5}{6}(- (\frac{2}{5}Log_2(\frac{2}{5})+ \frac{3}{5}Log_2(\frac{3}{5}))$\\
+Entropie(Température) = 0.81
+\end{enumerate}
+Le seuil choisi sera donc $\ge 25, \ <25$, l'ensemble d'apprentissage qui sera utilisé sera donc le suivant: \\
+
+\begin{center}
+\begin{tabular}{| c | c | c | c |}
+\hline
+Température & Faiblesse & Toux & Malade ?\\
+\hline
+$<25$ & 0 & oui & Angines\\
+\hline
+$\ge 25$ & 10 & non & Non\_malade\\
+\hline
+$<25$ & 10 & oui & Angines\\
+\hline
+
+$\ge 25$ & 10 & non & Non\_malade\\
+\hline
+
+$\ge 25$ & 0 & non & Fievre\\
+\hline
+
+$<25$ & 10 & oui & Angines\\
+\hline
 \end{tabular}
 \end{center}
 
 
-En présence de :\\
-\begin{itemize}
-\item Monsieur Mohand-Saïd HACID
-\item Monsieur Emmanuel COQUERY
-\end{itemize}
-
-
-Déroulement de la séance :\\
-Durant cette séance, j'ai d'abord commencé par présenter l'actuel avancement de mon projet de fin d'étude, intitulé "Étude comparative des algorithmes d'arbres de décision dans un environnement \emph{Big Data}". Une fois la présentation terminée, j'ai eu les remarques suivantes : \\
-\begin{itemize}
-\item Revoir les slides suivants :
-\begin{enumerate}
-\item N°10 : les caractéristiques d'un RDD.\\
-Revoir le troisième point
-
-\begin{figure}[!h]
-\begin{center}
-\includegraphics[scale=0.4]{slide8}
-\end{center}
-\end{figure}
-
-
-\item N°16 : Élagage de l'arbre de décision.\\
-En se basant sur ce que montre le slide, un sous arbre est élagué puis remplacé par un nœud fils, d'autres nœuds (appartenant au sous arbre) seront éventuellement perdus, ce qui affectera la précision de l'arbre de décision, qui a la base, est supposée être optimisée avec l'élagage, ce qui est contradictoire.\\Cette idée est à revoir avec une recherche encore plus approfondie. 
-
-\begin{figure}[!h]
-\begin{center}
-\includegraphics[scale=0.4]{slide16}
-\end{center}
-\end{figure}
-
-
-
-\item N°18 : avantages et inconvénients des arbres de décision.\\
-\begin{itemize}
-\item Sur quel critère se baser pour estimer qu'un arbre de décision est optimal par rapport à un autre ? (temps?, vitesse?, taille?, autres ?).
-\begin{figure}[!h]
-\begin{center}
-\includegraphics[scale=0.4]{slide18}
-\end{center}
-\end{figure}
-
-
-\item Quelle importance doit-on attribuer à chacun de ces critères ? et par rapport a quel contexte ?
-\item Ne serait-il pas intéressant de calculer/se rapprocher de l'optimum global, même au détriment de son cout de calcul,  dans des cas ou le besoin d'analyse n'est pas régulier.
-\item Les caractéristiques de l'ensemble de données d'apprentissage peuvent-ils avoir un effet sur la qualité de l'arbre de décision produit ? Dans ce cas, quel serait le critère d'un bon jeu de données ? cette idée a elle été abordée sur un des articles des approches proposées ? 
-\end{itemize}
-
-\item N° 24, 25 : Les deux approches MReC4.5 et MRID4.\\
-Les figures qui ne présente pas de comparaison entre l'approche proposée et celles existantes ne devrait pas être mises.\\ 
-\end{enumerate}
-
-\item A préparer pour le mercredi 21\//03\//2018 : 
-\begin{enumerate}
-\item Pour chacun des critères de division cités :
-\begin{itemize}
-\item Une définition claire, nette et précise.
-\item Déroulement d'un exemple.
-\item Expliquer dans quel contexte tel critères est meilleur qu'un autre.
-\end{itemize}
-
-\item Définition formel d'un arbre de décision, ainsi que les critères qui permettent d'évaluer, de mesurer et de comparer la qualité des arbres de décision.
-
-\item Explication détaillée de l'idée de la nouvelle approche, et décrire le contexte pour lequel elle pourrait être meilleure que celles déjà existantes.
-
-\end{enumerate}
 
 \end{itemize}
+
 
 \end{document}
