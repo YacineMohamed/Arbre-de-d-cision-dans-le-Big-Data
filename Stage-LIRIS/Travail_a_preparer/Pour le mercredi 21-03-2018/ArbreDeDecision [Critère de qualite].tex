@@ -1,0 +1,76 @@
+\documentclass[a4paper, 11pt]{report}
+\setcounter{tocdepth}{3}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{fourier} 
+\usepackage{array}
+\usepackage{makecell}
+\usepackage[top=2.5cm,bottom=2.5cm,right=2.5cm,left=2.5cm]{geometry}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{colortbl,hhline}
+\usepackage{subfig}
+\usepackage{multirow}
+\usepackage{comment}
+\usepackage{makecell}
+
+\usepackage{algorithmic,algorithm}
+
+\renewcommand{\listalgorithmname}{Liste des \ALG@name s}
+
+\definecolor{yacine}{RGB}{241,241,241}
+\usepackage{tikz}
+\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;} 
+
+\usepackage[backend=bibtex,style=numeric,sorting=nty]{biblatex}
+\nocite{*} %Ausgabe aller Bibliographieeinträges
+\usepackage{hyperref}
+\hypersetup{
+    linktoc=all,     %set to all if you want both sections and subsections linked
+}
+
+
+
+
+\begin{document}
+\section{Arbre de décision}
+\subsection{Définition}
+L'arbre de décision est une technique d'apprentissage automatique très utilisée, l'idée consiste a construire un modèle(sous forme d'arbre) à partir de données d'entrainement, ensuite, l'utiliser afin de classer de manière automatique, de nouvelle instances. \\
+Afin de construire un arbre de décision, il existe une variété d'algorithmes, avec la même idée de base mais un traitement différent, nous pouvons donc avoir, avec le même ensemble de données d'apprentissage, des arbres de décision différents crée par chacun de ces algorithmes. A partir de là, nous devons donc définir quel est la mesure qui permet de comparer la qualité des arbres de décision ?\\
+Plusieurs mesure existes, nous pouvons citer :
+
+\begin{itemize}
+\item Précision prédictive \\
+cela fait référence à capacité de l'arbre à prédire \emph{correctement} la classe de nouvelles instances (autres que les données d'apprentissage).\\
+Cette mesure est calculée a partir d'un ensemble de données teste, elle est calculer en utilisant la formule suivante :\\
+Précision de l'abre (\%) $= \frac{Nombre d'instance bien classé}{Nombre total d'instance}$ 
+
+\item Vitesse\\
+Cette mesure fait référence aux coûts (en terme de temps) de calcul impliqués en générant et en utilisant l'arbre.
+
+
+\item Robustesse \\
+Capacité de l'arbre à s'adapter à des situations "moins bonne", tel que :\\
+\begin{itemize}
+\item Gestion d'une instance à valeur manquante
+\item Gestion d'attribut mixte (continus discrets)
+\end{itemize}
+
+
+\item Simplicité et interprétabilité \\
+La simplicité fait référence à la taille de l'arbre construit, plus cette taille est réduite, plus sa simplicité et son inteprétabiltié augmente, 
+
+
+\item Evolutivité\\
+Sa capacité a maintenir de bonne performance lorsque le volume de données augmente
+\end{itemize}
+
+\subsection{Quel est le meilleur critère ?}
+L'idéal pour un arbre de décision est d'assurer à 100\% tous les critères citer en haut, chose qui, en réalité est très difficile(voire impossible), car certain critère ne sont obtenu qu'au détriment d'autres, un arbre de décision parfaitement simple et réduit aura certainement une faible précision, contrairement a un arbre très complexe et grand, qui ce dernier, malgré sa parfaite précision, aura un temps  moins bon.\\
+Ces critères sont choisis selon le contexte et la nature du traitement voulu à travers l'arbre de décision.
+\end{document}

@@ -1,0 +1,7 @@
+Caracteristique des dataset (taille, ligne, type d'attribur, nombre de categorie, districution, .....??)
+
+A quel point un nétoyage de données est important pour les arbres de decision 
+
+Github
+
+VENDREDI 09:00
