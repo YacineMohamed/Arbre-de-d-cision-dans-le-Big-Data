@@ -1,0 +1,203 @@
+\documentclass[a4paper, 11pt]{report}
+\setcounter{tocdepth}{3}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{fourier} 
+\usepackage{array}
+\usepackage{makecell}
+\usepackage[top=2.5cm,bottom=2.5cm,right=2.5cm,left=2.5cm]{geometry}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{colortbl,hhline}
+\usepackage{subfig}
+\usepackage{multirow}
+\usepackage{comment}
+\usepackage{makecell}
+
+\usepackage{algorithmic,algorithm}
+
+\renewcommand{\listalgorithmname}{Liste des \ALG@name s}
+
+\definecolor{yacine}{RGB}{241,241,241}
+\usepackage{tikz}
+\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;} 
+
+\usepackage[backend=bibtex,style=numeric,sorting=nty]{biblatex}
+\nocite{*} %Ausgabe aller Bibliographieeinträges
+\usepackage{hyperref}
+\hypersetup{
+    linktoc=all,     %set to all if you want both sections and subsections linked
+}
+
+
+
+
+\begin{document}
+\section{Gestion d'attributs continus} 
+
+
+Soit l'ensemble de données suivant :
+\begin{center}
+\begin{tabular}{| c | c | c | c |}
+\hline
+Température & Faiblesse & Toux & Malade ?\\
+\hline
+10 & 0 & oui & Angines\\
+\hline
+30 & 10 & non & Non\_malade\\
+\hline
+20 & 10 & oui & Angines\\
+\hline
+
+30 & 10 & non & Non\_malade\\
+\hline
+
+40 & 0 & non & Fievre\\
+\hline
+
+20 & 10 & oui & Angines\\
+\hline
+\end{tabular}
+\end{center}
+L'algorithme C4.5 gère les attribut continus de la manière suivante : 
+\begin{itemize}
+\item Étape 01 : Trier les valeur de l'attribut\\
+Ce qui donnera le résultat suivant : 
+\begin{tabular}{| c | c | c | c |}
+\hline
+10 & 20 & 30 & 40\\
+\hline
+\end{tabular}
+
+\item Étape 02 : Créer un seuil a partir de chaque valeurs consécutives, ce qui donnera le résultat suivant :\\
+$\frac{10+20}{2} = 15, \ \frac{20+30}{2} = 25, \ \frac{30+40}{2} = 35$
+
+\item Etape 03 : Calculer la quantité d'information apporté par chacune des valeurs précédente, en transformant les valeurs initiales de l'attribut en valeurs $(\ge VAL)$ ou $(< VAL)$
+\begin{enumerate}
+\item Valeur : 15
+
+
+\begin{center}
+\begin{tabular}{| c | c | c | c |}
+\hline
+Température & Faiblesse & Toux & Malade ?\\
+\hline
+$< 15$ & 0 & oui & Angines\\
+\hline
+$\ge 15$ & 10 & non & Non\_malade\\
+\hline
+$\ge 15$ & 10 & oui & Angines\\
+\hline
+
+$\ge 15$ & 10 & non & Non\_malade\\
+\hline
+
+$\ge 15$ & 0 & non & Fievre\\
+\hline
+
+$\ge 15$ & 10 & oui & Angines\\
+\hline
+\end{tabular}
+\end{center}
+
+Entropie(Température) = $\frac{1}{6}( - \frac{1}{1}Log_2(\frac{1}{1}))+\frac{5}{6}(- (\frac{1}{5}
+Log_2(\frac{1}{5})+ \frac{2}{5}Log_2(\frac{2}{5})+\frac{2}{5}Log_2(\frac{2}{5}))$\\
+Entropie(Température) = 1.27
+
+\item Valeur : 25 
+
+\begin{center}
+\begin{tabular}{| c | c | c | c |}
+\hline
+Température & Faiblesse & Toux & Malade ?\\
+\hline
+$<25$ & 0 & oui & Angines\\
+\hline
+$\ge 25$ & 10 & non & Non\_malade\\
+\hline
+$<25$ & 10 & oui & Angines\\
+\hline
+
+$\ge 25$ & 10 & non & Non\_malade\\
+\hline
+
+$\ge 25$ & 0 & non & Fievre\\
+\hline
+
+$<25$ & 10 & oui & Angines\\
+\hline
+\end{tabular}
+\end{center}
+
+Entropie(Température) = $\frac{3}{6}( - \frac{3}{3}Log_2(\frac{3}{3}))+\frac{3}{6}(- (\frac{1}{3}
+Log_2(\frac{1}{3})+ \frac{2}{3}Log_2(\frac{2}{3}))$\\
+Entropie(Température) = 0.48
+
+
+
+
+\item Valeur : 35
+
+
+\begin{center}
+\begin{tabular}{| c | c | c | c |}
+\hline
+Température & Faiblesse & Toux & Malade ?\\
+\hline
+$<35$ & 0 & oui & Angines\\
+\hline
+$<35$ & 10 & non & Non\_malade\\
+\hline
+$<35$ & 10 & oui & Angines\\
+\hline
+
+$<35$ & 10 & non & Non\_malade\\
+\hline
+
+$\ge 30$ & 0 & non & Fievre\\
+\hline
+
+$<35$ & 10 & oui & Angines\\
+\hline
+\end{tabular}
+\end{center}
+
+Entropie(Température) = $\frac{1}{6}( - \frac{1}{1}Log_2(\frac{1}{1}))+\frac{5}{6}(- (\frac{2}{5}Log_2(\frac{2}{5})+ \frac{3}{5}Log_2(\frac{3}{5}))$\\
+Entropie(Température) = 0.81
+\end{enumerate}
+Le seuil choisi sera donc $\ge 25, \ <25$, l'ensemble d'apprentissage qui sera utilisé sera donc le suivant: \\
+
+\begin{center}
+\begin{tabular}{| c | c | c | c |}
+\hline
+Température & Faiblesse & Toux & Malade ?\\
+\hline
+$<25$ & 0 & oui & Angines\\
+\hline
+$\ge 25$ & 10 & non & Non\_malade\\
+\hline
+$<25$ & 10 & oui & Angines\\
+\hline
+
+$\ge 25$ & 10 & non & Non\_malade\\
+\hline
+
+$\ge 25$ & 0 & non & Fievre\\
+\hline
+
+$<25$ & 10 & oui & Angines\\
+\hline
+\end{tabular}
+\end{center}
+
+
+
+\end{itemize}
+
+
+\end{document}
