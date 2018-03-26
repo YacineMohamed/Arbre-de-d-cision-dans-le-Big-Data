@@ -826,23 +826,27 @@ Nous allons voir, à travers le tableau ci-dessous, quels sont les conditions ap
 \multirow{2}{*}{\rotatebox[origin=c]{90}{ CHAID \ \ \ }}&\cellcolor{gray!25}Précision \checkmark & \cellcolor{gray!25}Temps $\times$ & \cellcolor{gray!25}Temps $\times$\\
 &Adapté au grand volume de données & Non adapté au grand nombre de modalité d'attribut, car :\newline ça fera augmenter le nombre de ligne de la table de contingence & Non adapté au grand nombre de catégorie de classe, car :\newline ça fera augmenter le nombre de colonne de la table de contingence\\
  \hline
-\multirow{2}{*}{\rotatebox[origin=c]{90}{ CART \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }}&\cellcolor{gray!25} Temps \checkmark  & \cellcolor{gray!25}Complexité $\times$& \cellcolor{gray!25}Complexité\checkmark\\
+\multirow{2}{*}{\rotatebox[origin=c]{90}{ CART \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }}&\cellcolor{gray!25} $ \ \ \ \ \ \ \ \ \ \ \ \  $  \checkmark  & \cellcolor{gray!25}Complexité $\times$& \cellcolor{gray!25}Complexité\checkmark\\
 &Indifférent à la variation de taille, car : \newline Sa formule est légère & Non adapté au grand nombre de modalité d'attribut, Car :\newline Son critère divise par valeur d'attribut et non par attribut& Adapté aux classes à catégorie binaire\\
   \hline
-\multirow{2}{*}{\rotatebox[origin=c]{90}{ ID3 \ \ \ \ \ \ \ \ \ \ \ \ \ \ }}&\cellcolor{gray!25} Temps $\times$ & \cellcolor{gray!25}Complexité $\times$& \\
-&Non adapté au très grand volume, à cause :\newline Des logarithmes utilisés dans le calcule du gain & Non adapté au nombre réduit de modalité, car :\newline il utilise le Gain d'information) & \\
+\multirow{2}{*}{\rotatebox[origin=c]{90}{ ID3 \ \ \ \ \ \ \ \ \ \ \ \ \ \ }}&\cellcolor{gray!25} Temps $\times$ & \cellcolor{gray!25}Complexité $\times$& \cellcolor{gray!25} $ \ \ \ \ \ \ \ \ \ \ \ \  $\checkmark \\
+&Non adapté au très grand volume, à cause :\newline Des logarithmes utilisés dans le calcule du gain & 
+
+Non adapté au nombre réduit de modalité, car :\newline il utilise le Gain d'information comme critère de division \newline
+Non adapté aux attributs de type continu
+
+ & Indifférent à la variation de la classe\\
   \hline
-\multirow{2}{*}{\rotatebox[origin=c]{90}{ C4.5 \ \ \ \ \ \ \ \ \ \ \ \ \ \ }}&\cellcolor{gray!25} Temps $\times$  & \cellcolor{gray!25}Complexité \checkmark & \\
+\multirow{2}{*}{\rotatebox[origin=c]{90}{ C4.5 \ \ \ \ \ \ \ \ \ \ \ \ \ \ }}&\cellcolor{gray!25} Temps $\times$  & \cellcolor{gray!25}Complexité \checkmark &\cellcolor{gray!25} $ \ \ \ \ \ \ \ \ \ \ \ \  $\checkmark \\
 & Non adapté au très grand volume, du au calcul : \begin{itemize}
 \item Gain
 \item InfoSplit
-\end{itemize}  & Adapté au nombre élevé de modalité (grâce du Rapport de gain) & \\
+\end{itemize}  & Adapté au nombre élevé de modalité (grâce du Rapport de gain) & Indifférent à la variation de la classe\\
   \hline
 \end{tabular}
-
-
 \end{center}
 \end{figure}
+
 
 
 
