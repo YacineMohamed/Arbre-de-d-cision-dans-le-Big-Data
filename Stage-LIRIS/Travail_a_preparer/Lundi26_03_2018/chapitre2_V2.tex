@@ -42,6 +42,11 @@
     linktoc=all,     %set to all if you want both sections and subsections linked
 }
 
+\newtheorem{definition}{Definition}
+\newcommand{\set}[1]{\ensuremath{\overline{#1}}}
+\newcommand{\tupleset}{\ensuremath{\mathcal{T}}}
+\newcommand{\arbreset}{\ensuremath{\mathcal{A}}}
+\newcommand{\classeset}{\ensuremath{\mathcal{Y}}}
 
 
 \bibliography{biblio2} 
@@ -125,31 +130,36 @@ Ce type d'apprentissage concerne essentiellement :
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Définition}
 %%%%%%%%%%%%%%%%%% HISTORIQUE %%%%%%%%%%%%%%%%%%%%%%%%% 
-\begin{comment}
-\subsection{Historique}
-La construction des arbres de décision à partir de données n'est pas une discipline nouvelle, la première apparition remonte à 1963, lorsque les deux statisticiens, \textsc{Morgan} et \textsc{Sonquist}, avaient utilisés des arbres de régression dans un processus de prédiction \textsc{AID} (Automatic Interaction Détection), ce qui a ouvert la voie a un enchainement d'algorithme, dont THAID, CHAID, CART, ID3, C4.5 et C5.
-
-ce qui avait ouvert la voie à un ensemble de méthodes, d'abord en 1973 avec \textsc{THAID} (\textsc{Morgan} et \textsc{Messenger}), ensuite en 1980, avec \emph{CHAID} (\textsc{Kass}). \\
-Néomoins, cette discipline n’a pris de l’ampleur qu’à partir de 1984, avec l’apparition de la méthode \emph{CART} (Classification and Regression Tree) de \textsc{Breiman} et al. Ensuite, et grâce à \textsc{Ross Quinlan}, qui est considéré comme un des piliers de la discipline, des méthodes de classifications ont été misent au point, a commencé par \emph{3}, en 1986, ensuite, en 1993, l’amélioration de cette dernière donna naissance à une méthode considérée comme référence incontournable des arbres de décision, à savoir la méthode \emph{C4.5}. Cet algorithme à encore évolué en \textsc{C5.0} (Sous Unix) et \textsc{See5} (Sous Windows), mais en étant cette fois ci implémentée dans un logiciel commercial\cite{chen1996data}.
-\newpage
-\begin{figure}[!h]
-\begin{center}
-	\includegraphics[scale=0.35]{Images/Chapitre02/Historique.png}
-	\caption{Algorithmes d'arbres de décision par ordre chronologique}
-\end{center}
-\end{figure}
-
-
-%%%%%%%%%%%%%%%%%% DEFINITION %%%%%%%%%%%%%%%%%%%%%%%%%%%ù
-\subsection{Définition}
-\end{comment}
 Faisant partie des méthodes de classification supervisées, le but des arbres de décision est aussi de créer un modèle afin de pouvoir classer automatiquement de nouvelles données. La construction de ce modèle se fait à travers des partitions récursives sur l'ensemble de données d'apprentissage, jusqu'à arriver à des sous ensembles homogènes par rapport a la variable de classe. Ainsi, l'ensemble de données d'apprentissage est transformé en un arbre, dans lequel chaque composent a une signification particulière :
 \begin{enumerate}
 \item Racine : comprend tout l'ensemble de données d'apprentissage. 
 \item Nœud interne : représente un test.
 \item Nœud terminal (feuille) : représente une décision finale.
 \end{enumerate}
-\newpage
+
+\subsection{Formalisation}
+\label{sec:formalisation}
+
+Soit $\tupleset$ l'ensemble des tuples possibles et $\classeset$ l'ensemble des valeurs de classes.
+
+\begin{definition}[Condition sur un tuple]
+  Une condition $C$ est une fonction $\tupleset\rightarrow\{true,false\}$.
+\end{definition}
+
+\begin{definition}[Arbre de décision]
+  % Soit $\set{X}$ un ensemble d'attributs et $Y$ un attribut.
+  L'ensemble des arbres de décision $\arbreset$ est défini inductivement par:
+  \begin{itemize}
+  \item $Noeud(F)\in\arbreset$ si $F=\{(A_1,C_1),\dots,(A_k,C_k)\}$ tel que les $A_i$ sont des arbres de décisions et les $C_i$ sont des conditions telles que pour tout tuple $t$, il existe un unique $i$ tel que $C_i(t)=true$. 
+  \item $Feuille(Y)\in\arbreset$ si $Y\in\classeset$ est une valeur de classe.
+  \end{itemize}
+\end{definition}
+
+\begin{definition}[Classification locale]
+  Soit $A=Noeud(\{(A_1,C_1),\dots,(A_k,C_k)\}$ et soit $t$ un tuple.
+  On défini $classificationLocale(A,t)=A_i$ si $i$ est le seul indice tel que $C_i(t)=true$.
+\end{definition}
+
 Le rendu du modèle est très aisément interprétable, ce qui fait l'une des principales forces des arbres de décision, comme le montre la figure ci-dessous.
 
 \begin{figure}[!h]
@@ -162,7 +172,21 @@ Le rendu du modèle est très aisément interprétable, ce qui fait l'une des pr
 A tout arbre de décision est associé une procédure de classification, cette association est définie en parcourant l'arbre de haut en bas, passant par tous les tests menant de la racine à la feuille, qui, une fois atteinte, correspondra à la classe qui sera attribuée à la nouvelle instance.
 
 
+\begin{definition}[Classification par un arbre de décision]
+  La classification associée par un arbre de décision $A$ à un tuple $t$ est définie par la fonction $classifie:\arbreset\times\tupleset\rightarrow\classeset$
 
+  $$classifie(A,t)=\left\{
+    \begin{array}[c]{ll}
+      classifie(A',t)&\textnormal{ si }A=Noeud(F)\textnormal{ et }A' = classificationLocale(A,t)\\
+      Y&\textnormal{ si }A=Feuille(Y)
+    \end{array}
+  \right.
+  $$
+\end{definition}
+
+\begin{definition}[Equivalence sémantique d'arbres de décision]
+  Soient $A_1$ et $A_2$ deux arbres de décision. $A_1$ est sémantiquement équivalent à $A_2$ (noté $A_1\equiv A_2$) si pour tout tuple $t\in\tupleset$, $classification(A_1,t) = classification(A_2,t)$.
+\end{definition}
 
 \begin{algorithm}[!h]
 \renewcommand\thealgorithm{}
@@ -184,6 +208,8 @@ A tout arbre de décision est associé une procédure de classification, cette a
 \end{algorithmic}
 \addtocounter{algorithm}{-1}
 \end{algorithm}
+
+
 L'algorithme \ref{Algorithme1} représente le déroulement global de la construction d'un arbre de décision, nous remarquons à la ligne 6 qu'à chaque niveau, si le nœud n'est pas homogène, un test doit être choisi afin de diviser l'ensemble de donnée relatif a ce nœud. Le choix du test est considéré comme la partie cruciale de l'algorithme, vu son impacte directe sur l'arbre de décision résultant, ce choix est basé sur des métriques appelées \emph{critères de division}.\\ 
 \section{Critères de division}
 L'objectif principal d'un critère de division est de réduit l'impureté d'un nœud, et ce, en choisissant l'attribut approprié sur lequel diviser l'ensemble de données.\\
