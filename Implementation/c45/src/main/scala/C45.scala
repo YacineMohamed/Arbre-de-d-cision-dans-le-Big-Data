@@ -165,7 +165,7 @@ object C45 {
   def sep(): String ={
     var sep=""
 
-    println("* Veuillez tapper le numero correspondant au séparateur d'attributs utilisé:")
+    println("* Veuillez tapper le N° correspondant au séparateur d'attributs utilisé:")
     println("* 1 : L'espace( )\n* 2 : La virgule( , )\n* 3 : Le tiré ( - )\n* 4 : L'underscore ( _ )\n* 5 : Autres")
     println("************************ Reponse : ")
     val rep = scala.io.StdIn.readLine()
@@ -186,7 +186,9 @@ object C45 {
   def prepa(listTexte:List[String]): List[String]={
 
     println("******** L'ensemble d'apprentissage contient une entete ******** ?\n Oui : 1\n Non : 0")
+    println("************************ Reponse : ")
     var entete = scala.io.StdIn.readInt()
+
     if(entete!=1 && entete != 0){
       println("Reponse éronée, veuillez saisir un des choix proposés")
       prepa((listTexte))
@@ -195,6 +197,7 @@ object C45 {
     //println(" 1 "+listRes)
 
     separateur = sep()
+
     if(separateur.equals("Innexistance")){
       println("Choix innexistant !! veuillez reessayer")
       separateur = sep()
