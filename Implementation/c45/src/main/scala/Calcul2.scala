@@ -98,11 +98,11 @@ object Calcul2 {
           entropie += (-(tab(j).split("=")(1).replaceAll("\\s", "").toInt).toDouble /
             sum.toDouble) * calcLog2((tab(j).split("=")(1).replaceAll("\\s", "").toInt / sum.toDouble))
         }
-        entropie = entropie.toDouble * (sum.toDouble / total.toDouble)
-        entr += entropie.toDouble
+        entropie = entropie * (sum.toDouble / total.toDouble)
+        entr += entropie
       }
     }
-    return entopieC.toDouble-entr.toDouble
+    return entopieC.toDouble-entr
   }
 
 
@@ -111,7 +111,6 @@ object Calcul2 {
      //   val gain = gainn(entropieC.toDouble,x).toDouble
     return ratio.toDouble
   }
-
 def infoSplit(x:List[String]):Double={
   var InfoSplit = 0.0
   val total = x.size

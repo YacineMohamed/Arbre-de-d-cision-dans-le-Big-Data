@@ -30,15 +30,16 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="C45.scala" pinned="false" current-in-tab="false">
+      <file leaf-file-name="C45.scala" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/scala/C45.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="85" column="42" lean-forward="false" selection-start-line="85" selection-start-column="42" selection-end-line="85" selection-end-column="42" />
+            <state relative-caret-position="148">
+              <caret line="197" column="42" lean-forward="true" selection-start-line="197" selection-start-column="42" selection-end-line="197" selection-end-column="42" />
               <folding>
                 <element signature="e#0#49#0" expanded="true" />
                 <element signature="e#481#761#0" expanded="false" />
                 <element signature="e#765#1603#0" expanded="false" />
+                <element signature="e#1607#3678#0" expanded="false" />
                 <element signature="e#3682#5134#0" expanded="false" />
                 <element signature="e#5140#5816#0" expanded="false" />
               </folding>
@@ -46,17 +47,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Calcul2.scala" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Calcul2.scala" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/Calcul2.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="113" column="0" lean-forward="true" selection-start-line="113" selection-start-column="0" selection-end-line="113" selection-end-column="0" />
+            <state relative-caret-position="21">
+              <caret line="3" column="16" lean-forward="true" selection-start-line="3" selection-start-column="16" selection-end-line="3" selection-end-column="16" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
                 <element signature="e#110#915#0" expanded="false" />
-                <element signature="e#3906#4413#0" expanded="false" />
-                <element signature="e#4417#6455#0" expanded="false" />
-                <element signature="e#6460#9720#0" expanded="false" />
+                <element signature="e#919#3046#0" expanded="false" />
+                <element signature="e#3051#3276#0" expanded="false" />
+                <element signature="e#3277#3787#0" expanded="false" />
+                <element signature="e#3878#4385#0" expanded="false" />
+                <element signature="e#4389#6427#0" expanded="false" />
+                <element signature="e#6432#9692#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -74,8 +78,8 @@
       <list>
         <option value="$PROJECT_DIR$/build.sbt" />
         <option value="$PROJECT_DIR$/src/main/scala/scriptFile.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/C45.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/Calcul2.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/C45.scala" />
       </list>
     </option>
   </component>
@@ -349,13 +353,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="scala-line">
-          <url>file://$PROJECT_DIR$/src/main/scala/C45.scala</url>
-          <line>189</line>
-          <properties />
-        </line-breakpoint>
-      </breakpoints>
       <option name="time" value="1" />
     </breakpoint-manager>
     <watches-manager />
@@ -376,9 +373,12 @@
           <folding>
             <element signature="e#0#31#0" expanded="true" />
             <element signature="e#110#915#0" expanded="false" />
-            <element signature="e#3906#4413#0" expanded="false" />
-            <element signature="e#4417#6455#0" expanded="false" />
-            <element signature="e#6460#9720#0" expanded="false" />
+            <element signature="e#919#3046#0" expanded="false" />
+            <element signature="e#3051#3276#0" expanded="false" />
+            <element signature="e#3277#3787#0" expanded="false" />
+            <element signature="e#3878#4385#0" expanded="false" />
+            <element signature="e#4389#6427#0" expanded="false" />
+            <element signature="e#6432#9692#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -391,6 +391,7 @@
             <element signature="e#0#49#0" expanded="true" />
             <element signature="e#481#761#0" expanded="false" />
             <element signature="e#765#1603#0" expanded="false" />
+            <element signature="e#1607#3678#0" expanded="false" />
             <element signature="e#3682#5134#0" expanded="false" />
             <element signature="e#5140#5816#0" expanded="false" />
           </folding>
@@ -407,30 +408,34 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/Calcul.scala" />
     <entry file="file://$PROJECT_DIR$/src/main/scala/scriptFile.scala" />
-    <entry file="file://$PROJECT_DIR$/src/main/scala/C45.scala">
+    <entry file="file://$PROJECT_DIR$/src/main/scala/Calcul2.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="85" column="42" lean-forward="false" selection-start-line="85" selection-start-column="42" selection-end-line="85" selection-end-column="42" />
+        <state relative-caret-position="21">
+          <caret line="3" column="16" lean-forward="true" selection-start-line="3" selection-start-column="16" selection-end-line="3" selection-end-column="16" />
           <folding>
-            <element signature="e#0#49#0" expanded="true" />
-            <element signature="e#481#761#0" expanded="false" />
-            <element signature="e#765#1603#0" expanded="false" />
-            <element signature="e#3682#5134#0" expanded="false" />
-            <element signature="e#5140#5816#0" expanded="false" />
+            <element signature="e#0#31#0" expanded="true" />
+            <element signature="e#110#915#0" expanded="false" />
+            <element signature="e#919#3046#0" expanded="false" />
+            <element signature="e#3051#3276#0" expanded="false" />
+            <element signature="e#3277#3787#0" expanded="false" />
+            <element signature="e#3878#4385#0" expanded="false" />
+            <element signature="e#4389#6427#0" expanded="false" />
+            <element signature="e#6432#9692#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/Calcul2.scala">
+    <entry file="file://$PROJECT_DIR$/src/main/scala/C45.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="113" column="0" lean-forward="true" selection-start-line="113" selection-start-column="0" selection-end-line="113" selection-end-column="0" />
+        <state relative-caret-position="148">
+          <caret line="197" column="42" lean-forward="true" selection-start-line="197" selection-start-column="42" selection-end-line="197" selection-end-column="42" />
           <folding>
-            <element signature="e#0#31#0" expanded="true" />
-            <element signature="e#110#915#0" expanded="false" />
-            <element signature="e#3906#4413#0" expanded="false" />
-            <element signature="e#4417#6455#0" expanded="false" />
-            <element signature="e#6460#9720#0" expanded="false" />
+            <element signature="e#0#49#0" expanded="true" />
+            <element signature="e#481#761#0" expanded="false" />
+            <element signature="e#765#1603#0" expanded="false" />
+            <element signature="e#1607#3678#0" expanded="false" />
+            <element signature="e#3682#5134#0" expanded="false" />
+            <element signature="e#5140#5816#0" expanded="false" />
           </folding>
         </state>
       </provider>

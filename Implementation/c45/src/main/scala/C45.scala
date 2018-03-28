@@ -183,12 +183,14 @@ object C45 {
     return sep
   }
 
-
-
-
-
   def prepa(listTexte:List[String]): List[String]={
 
+    println("******** L'ensemble d'apprentissage contient une entete ******** ?\n Oui : 1\n Non : 0")
+    var entete = scala.io.StdIn.readInt()
+    if(entete!=1 && entete != 0){
+      println("Reponse éronée, veuillez saisir un des choix proposés")
+      prepa((listTexte))
+    }
     var listRes:ListBuffer[String] = ListBuffer[String]()
     //println(" 1 "+listRes)
 
@@ -196,23 +198,15 @@ object C45 {
     if(separateur.equals("Innexistance")){
       println("Choix innexistant !! veuillez reessayer")
       separateur = sep()
-    }
-    if(!separateur.equals(" ")){
+    }else{
       var listB:ListBuffer[String] = ListBuffer[String]()
-      for(i<-0 to listTexte.size-1) {
+      for(i<-entete to listTexte.size-1) {
         listB += listTexte(i).toString().replaceAll(separateur, " ")
       }
       //<
       listRes=listB
-
-    }else{
-      listRes=listTexte.to[ListBuffer]
     }
-
    // println("lsit res : "+listRes)
-
-
-
     val hashMV:mutable.HashMap[Int,Int] = Calcul2.verifNumeric(listRes)
 
     println("listeRes "+listRes + "size : "+hashMV)
