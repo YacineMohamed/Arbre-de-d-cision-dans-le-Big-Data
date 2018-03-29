@@ -5,3 +5,8 @@
 *.synctex.gz
 *.toc
 *-blx.bib
+*.bbl
+*.blg
+*.rel
+target
+.ensime*

@@ -191,29 +191,6 @@ Le rendu du modèle est très aisément interprétable, ce qui fait l'une des pr
 \end{figure}
 A tout arbre de décision est associé une procédure de classification, cette association est définie en parcourant l'arbre de haut en bas, passant par tous les tests menant de la racine à la feuille, qui, une fois atteinte, correspondra à la classe qui sera attribuée à la nouvelle instance.
 
-\begin{comment}
-\begin{algorithm}[!h]
-\renewcommand\thealgorithm{}
-\caption{\textbf{1 } : Algorithme de création d'un arbre de décision}
-\begin{algorithmic}
-\STATE \textbf{Entrée}: Échantillon S\\
-\textbf{00 : DÉBUT}\\
-\textbf{01 : }\ \ \ \ \ \textbf{RÉPÉTER}\\
-\textbf{02 : }\ \ \ \ \ \ \ \ \ \ Décider si le noeud courant est terminal\\
-\textbf{03 : }\ \ \ \ \ \ \ \ \ \ \textbf{SI} le nœud est terminal \textbf{ALORS}\\
-\textbf{04 : }\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Lui affecter une classe\\
-\textbf{05 : }\ \ \ \ \ \ \ \ \ \ \textbf{SINON}\\
-\textbf{06 : }\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Sélectionner un test et créer autant de nœud fils qu'il y a de réponses possibles au test\\
-\textbf{07 : }\ \ \ \ \ \ \ \ \ \ \textbf{FinSI}\\
-\textbf{08 : }\ \ \ \ \ \ \ \ \ \ Passer au nœud suivant non exploré s'il existe\\
-\textbf{09 : }\ \ \ \ \ \textbf{JUSQU'À} obtenir un arbre de décision\\
-\textbf{10 : FIN}
-\label{Algorithme1}
-\end{algorithmic}
-\addtocounter{algorithm}{-1}
-\end{algorithm}
-
-\end{comment}
 
 
 \begin{algorithm}[!h]
