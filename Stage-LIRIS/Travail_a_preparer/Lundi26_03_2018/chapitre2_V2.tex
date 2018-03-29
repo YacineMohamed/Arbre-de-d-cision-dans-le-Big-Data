@@ -47,6 +47,9 @@
 \newcommand{\tupleset}{\ensuremath{\mathcal{T}}}
 \newcommand{\arbreset}{\ensuremath{\mathcal{A}}}
 \newcommand{\classeset}{\ensuremath{\mathcal{Y}}}
+\newcommand{\attributset}{\ensuremath{\mathcal{AT}}}
+
+\newcommand{\regleset}{\ensuremath{\mathcal{R}}}
 
 
 \bibliography{biblio2} 
@@ -188,7 +191,7 @@ Le rendu du modèle est très aisément interprétable, ce qui fait l'une des pr
 \end{figure}
 A tout arbre de décision est associé une procédure de classification, cette association est définie en parcourant l'arbre de haut en bas, passant par tous les tests menant de la racine à la feuille, qui, une fois atteinte, correspondra à la classe qui sera attribuée à la nouvelle instance.
 
-
+\begin{comment}
 \begin{algorithm}[!h]
 \renewcommand\thealgorithm{}
 \caption{\textbf{1 } : Algorithme de création d'un arbre de décision}
@@ -210,10 +213,87 @@ A tout arbre de décision est associé une procédure de classification, cette a
 \addtocounter{algorithm}{-1}
 \end{algorithm}
 
+\end{comment}
+
+
+\begin{algorithm}[!h]
+\renewcommand\thealgorithm{}
+\caption{\textbf{1 } : Algorithme de création d'un arbre de décision}
+\begin{algorithmic}
+\STATE \textbf{Entrée}:$\tupleset_n=\{t_1,\dots,t_n\}$ ensemble de tuple correspondant au $noeud_n$\\
+\textbf{Arbre A={}}
+\textbf{00 : construction($\tupleset,noeud_n$)}\\
+\textbf{01 : DÉBUT}\\
+\textbf{02 : }\ \ \ \ \ \ \ \ \ \ \textbf{SI} $\forall{t_i} : t_i(Y) = y$ \textbf{ALORS}\\
+\textbf{03 : }\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ $Nœud_n$ = Feuille(y)\\
+\textbf{04 : }\ \ \ \ \ \ \ \ \ \ \textbf{SINON}\\
+\textbf{05 : }\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chercherAttributDivision($\tupleset)=At_i$\\
+\textbf{06 : }\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ diviser($\tupleset,At_i)=\set X_{ij}$\\
+\textbf{07 : }\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Pour tout ($n=0,\dots,j$) \\
+\textbf{08 : }\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ créer $noeud_j$\\
+\textbf{10 : }\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ construction($X_{ij},noeud_j$)\\
+\textbf{09 : }\ \ \ \ \ \ \ \ \ \ \textbf{FinSI}\\
+\textbf{04 : }\ \ \ \ \ \ \ \ \ \ \textbf{$A=A+noeud_n$}\\
+\textbf{11 : FIN}\\
+\textbf{Sortie} : $A$
+
+\label{Algorithme1}
+\end{algorithmic}
+\addtocounter{algorithm}{-1}
+\end{algorithm}
+
 
 L'algorithme \ref{Algorithme1} représente le déroulement global de la construction d'un arbre de décision, nous remarquons à la ligne 6 qu'à chaque niveau, si le nœud n'est pas homogène, un test doit être choisi afin de diviser l'ensemble de donnée relatif a ce nœud. Le choix du test est considéré comme la partie cruciale de l'algorithme, vu son impacte directe sur l'arbre de décision résultant, ce choix est basé sur des métriques appelées \emph{critères de division}.\\ 
+
 \section{Critères de division}
-L'objectif principal d'un critère de division est de réduit l'impureté d'un nœud, et ce, en choisissant l'attribut approprié sur lequel diviser l'ensemble de données.\\
+
+
+\begin{definition}[Homogénéité]
+
+Soit $\tupleset(\attributset, Y)$ un ensemble de tuple caractérisé par \\
+\begin{center}
+\begin{tabular}{l}
+$\attributset = \{At_1,\dots,At_n\}$ : un ensemble d 'attribut\\
+$Y$ : un attribut de classe
+\end{tabular}
+\end{center}
+$\tupleset$ est dit homogène si : $\forall{t_i}\forall{t_j} : t_i(Y) = t_j(Y)$ 
+
+\end{definition}
+
+\begin{definition}[Critère de division]
+%Soit $\tupleset(\attributset, C)$ un ensemble de tuples, caractérisé par : \\
+Soit $\tupleset=t_{i,\dots,n}$ un ensemble de tuples, caractérisé par : \\
+
+\begin{center}
+\begin{tabular}{l l}
+$\attributset=\attributset_1,\dots,\attributset_k$&Un ensemble d'attributs \\
+$\classeset$&Un attribut de classe\\
+\end{tabular}
+\end{center}
+On défini les fonctions \\
+\begin{center}
+\begin{tabular}{l}
+$chercherAttributDivision(\tupleset,\attributset) = \attributset_i$ \\
+$diviser(\tupleset,\attributset_i) = \set X_{ij(j=2,\dots,n)}$, tel que :\\
+\end{tabular}
+\\$\set X_{ij}$ représente les $j$ sous ensembles résultant de la division de $\tupleset$ par rapport à $\attributset_i$\\
+\end{center}
+La fonction $chercherAttributDivision$ permet de satisfaire la propriété d'homogénéité, tel que :\\
+$\forall{\set X_{m}} \subset \tupleset, i\neq m, homogeneite(\set X_i\_) \geq homogeinite(\set X_m\_)$
+
+\end{definition}
+
+
+\begin{definition}[Contruction d'un arbre de décision]
+Soit $\tupleset$ un ensemble de tuple, \\
+On défini la fonction $constructe(\tupleset) = A$, tel que A est un arbre de decision, tel que l :
+%$chercherAttributDivision("
+\end{definition}
+
+
+
+L'objectif principal d'un critère de division est de maximiser l'homogénéité d'un nœud, et ce, en choisissant l'attribut approprié sur lequel diviser l'ensemble de données.\\
 Il existe plusieurs critères, c'est en grande partie ce qui différencie les algorithmes d'arbres de décision, nous allons détailler les plus utilisés d'entre eux, en utilisant de manière commune le jeu de données suivant :
 \begin{figure}[!h]
 \begin{center}
@@ -497,8 +577,10 @@ Afin de palier à ces problème, l'arbre de décision doit être élagué. L'él
 
 
 
-\begin{itemize}
-\item Pré-élagage\\
+\subsubsection{Pré-élagage}
+
+
+
 Consiste à établir une liste de règles d'arrêt, afin d'empêcher la croissance des branches qui n'améliore pas la précision prédictive de l'arbre\cite{esposito1997comparative}, parmi les réglés d'arrêt nous pouvons citer (entres autres) : 
 \begin{itemize}
 \item Seuil minimal d'instance
@@ -555,14 +637,28 @@ Si $\chi^2 > \chi_{critique}$ Alors l
 Enfin, à partir de la table statistique appelé \emph{t table}, faire l'intersection entre la valeur $\chi^2$ et le valeur du $DDL$, 
 
 \end{comment}
-
-
-
-
-
 \end{itemize}
 
-\item Post-élagage\\
+\subsubsection{Post-élagage}
+
+
+
+
+\begin{definition}[Précision d'un arbre de décision]
+Soit $\tupleset=t_1,\dots,t_n$ un ensemble de tuple de test, et soit A un arbre de décision\\
+on défini la fonction $precision(A) \in [0,1]$ tel que: \\
+$precision(A) = \sum_{i=0}^n \frac{classifie(A,t_i) = t_i(Y)} {t_i(Y)}$
+\end{definition}
+\begin{definition}[Post-Elagage]
+
+Soit $A=\{a_1,\dots,a_n\}$ un arbre de décision caractérisé par n sous arbres \\
+$\forall{a_i} \subset A$, On défini la fonction : \\
+$Elaguer(A,a_i) = A'$, ou $\forall{_{j=0,\dots,n, j \neq i}} A'=A'+a_j,$  Si et seulement si :\\ 
+
+$precision(A') \geq precision(A)$
+
+\end{definition}
+
 Dans ce cas, l'élagage est appliqué à un arbre de décision complètement construit, en supprimant certain sous arabes, dans le but de réduire son taux d'erreur.\\
 L'effet bénéfique de l'élagage a attiré l'attention de nombreux chercheurs, qui ont proposés un certain nombre de méthodes\cite{esposito1997comparative}, parmi ces méthodes nous pouvons citer : \\
 \begin{itemize}
@@ -576,7 +672,6 @@ A noter que l'estimation de l'erreur réelle est calculée avec la formule suiva
 Erreur(T) = \frac{Nombre\ d'instance\ mal\ classer}{Nombre\ total\ d'instance}
 \end{split}
 \end{align}
-\end{itemize}
 \end{itemize}
 
 
