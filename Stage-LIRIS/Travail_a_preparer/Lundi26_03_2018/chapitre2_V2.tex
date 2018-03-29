@@ -188,6 +188,18 @@ A tout arbre de décision est associé une procédure de classification, cette a
   Soient $A_1$ et $A_2$ deux arbres de décision. $A_1$ est sémantiquement équivalent à $A_2$ (noté $A_1\equiv A_2$) si pour tout tuple $t\in\tupleset$, $classification(A_1,t) = classification(A_2,t)$.
 \end{definition}
 
+Le rendu du modèle est très aisément interprétable, ce qui fait l'une des principales forces des arbres de décision, comme le montre la figure ci-dessous.
+
+\begin{figure}[!h]
+\begin{center}
+	\includegraphics[scale=2]{Images/arbreD.png}
+	\caption{Structure d'un arbre de décision}
+\end{center}
+\label{Arbre}
+\end{figure}
+A tout arbre de décision est associé une procédure de classification, cette association est définie en parcourant l'arbre de haut en bas, passant par tous les tests menant de la racine à la feuille, qui, une fois atteinte, correspondra à la classe qui sera attribuée à la nouvelle instance.
+
+
 \begin{algorithm}[!h]
 \renewcommand\thealgorithm{}
 \caption{\textbf{1 } : Algorithme de création d'un arbre de décision}

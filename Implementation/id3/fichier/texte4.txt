@@ -1,0 +1,14 @@
+ensoleille haute haute faux non
+ensoleille haute haute vrai non
+couvert haute haute faux oui
+pluvieux basse haute faux oui
+pluvieux moyenne normal faux oui
+pluvieux moyenne normal vrai non
+couvert moyenne normal vrai oui
+ensoleille basse haute faux non
+ensoleille moyenne normal faux oui
+pluvieux basse normal faux oui
+ensoleille basse normal vrai oui
+couvert basse haute vrai oui
+couvert haute normal faux oui
+pluvieux moyenne haute vrai non

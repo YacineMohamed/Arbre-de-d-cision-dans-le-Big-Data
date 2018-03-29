@@ -1,0 +1,5 @@
+Root:0=couvert=->[oui]
+Root:0=pluvieux:3=faux=->[oui]
+Root:0=pluvieux:3=vrai=->[non]
+Root:0=ensoleille:2=normal=->[oui]
+Root:0=ensoleille:2=haute=->[non]
