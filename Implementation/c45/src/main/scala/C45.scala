@@ -5,13 +5,19 @@ import scala.collection.mutable.{ArrayBuffer, ListBuffer}
 import scala.reflect.io.Path
 import org.slf4j.{Logger, LoggerFactory}
 import com.typesafe.scalalogging._
-object C45  extends LazyLogging{
+
+object C45  extends LazyLogging {
+
   var separateur=""
   val conf = new SparkConf().setAppName("C4.5").setMaster("local")
   val sc = new SparkContext(conf)
   val inputPath = "fichier/texte.txt"
   val outputPath = "fichier/Resultat"
   var resultat: ListBuffer[String] = ListBuffer[String]()
+
+  /**
+    * Fonction appellée au lancement du programme
+    */
   def main(args: Array[String]): Unit = {
 
     val texte = sc.textFile(inputPath) // un RDD qui contient l ensemble de données tel quel
@@ -56,6 +62,7 @@ object C45  extends LazyLogging{
   }
 
 
+  // TODO: commenter cette fonction: que fait-elle, quels sont ses arguments, que renvoie-t-elle ?
   def structureEnsemble(listTexte: List[String]): Map[String,String] = {
     println("__________________________________________________")
     val nombreAttribut =
@@ -96,7 +103,7 @@ object C45  extends LazyLogging{
 return myMAP
   }
 
-
+  // TODO: commenter cette fonction: que fait-elle, quels sont ses arguments, que renvoie-t-elle ?
   def constructionArbre(noeud: String,  ensemble: Map[String, String]): Unit = {
 
     val verifiHomogeneite: mutable.HashMap[String, Int] = mutable.HashMap[String, Int]()
@@ -172,6 +179,7 @@ return myMAP
     }
   }
 
+  // TODO: commenter cette fonction: que fait-elle, quels sont ses arguments, que renvoie-t-elle ?
   def enregistreArbre(): Unit ={
     if (scala.reflect.io.File(scala.reflect.io.Path(outputPath)).exists) {
       val jj: Path = Path(outputPath)
@@ -184,7 +192,7 @@ return myMAP
   }
 
 
-
+  // TODO: commenter cette fonction: que fait-elle, quels sont ses arguments, que renvoie-t-elle ?
   def divisionEnsemble(noeud: String, pos: Int, ensemble: Map[String, String]): Unit = {
     val nouvelEnsemble: mutable.HashMap[String, String] = mutable.HashMap[String, String]()
     for ((k, v) <- ensemble) {
@@ -263,6 +271,7 @@ return myMAP
     }
   }
 
+  // TODO: commenter cette fonction: que fait-elle, quels sont ses arguments, que renvoie-t-elle ?
   def sep(): String ={
     var sep=""
 
@@ -284,6 +293,7 @@ return myMAP
     return sep
   }
 
+  // TODO: commenter cette fonction: que fait-elle, quels sont ses arguments, que renvoie-t-elle ?
   def preparerEnsemble(listTexte:List[String]): List[String]={
 
     println("******** L'ensemble d'apprentissage contient une entete ******** ?\n Oui : 1\n Non : 0")
