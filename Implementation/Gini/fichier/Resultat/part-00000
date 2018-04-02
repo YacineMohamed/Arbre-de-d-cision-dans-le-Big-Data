@@ -1,0 +1,4 @@
+root:0:<15.0=Faux:2:oui=Faux:1:faible=Faux[nomalade]
+root:0:<15.0=Faux:2:oui=Faux:1:faible=Vrai[fievre]
+root:0:<15.0=Faux:2:oui=Vrai[angines]
+root:0:<15.0=Vrai[nomalade]

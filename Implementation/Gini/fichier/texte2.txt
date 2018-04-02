@@ -1,0 +1,6 @@
+10_nofaible_non_nomalade
+30_faible_non_fievre
+20_nofaible_oui_angines
+30_faible_oui_angines
+40_nofaible_non_nomalade
+20_nofaible_oui_angines

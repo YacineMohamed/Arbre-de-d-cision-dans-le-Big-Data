@@ -1,0 +1,7 @@
+tampérature faiblesse toux maladie
+normal nofaible non nomalade
+haute faible non nomalade
+basse nofaible oui nomalade
+haute faible oui nomalade
+normal nofaible non nomalade
+basse nofaible oui nomalade
