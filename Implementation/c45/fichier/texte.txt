@@ -1,7 +1,7 @@
-tampérature faiblesse toux maladie
-normal nofaible non nomalade
-haute faible non fievre
-basse nofaible oui angines
-haute faible oui angines
-normal nofaible non nomalade
-basse nofaible oui angines
+a b c d
+1 normal nofaible 0.0 nomalade
+2 haute faible 0.0 fievre
+3 basse nofaible 1.0 angines
+4 haute faible 1.0 angines
+5 normal nofaible 0.0 nomalade
+6 basse nofaible 1.0 angines

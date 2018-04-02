@@ -1,0 +1,6 @@
+normal nofaible 0.0
+haute faible 0.0
+basse nofaible 1.0
+haute faible 1.0
+normal nofaible 0.0
+basse nofaible 1.0
