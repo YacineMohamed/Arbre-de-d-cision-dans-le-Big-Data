@@ -49,6 +49,8 @@
 \newcommand{\classeset}{\ensuremath{\mathcal{Y}}}
 \newcommand{\attributset}{\ensuremath{\mathcal{AT}}}
 \newcommand{\valeurset}{\ensuremath{\mathcal{V}}}
+\newcommand{\nat}{\ensuremath{\mathbb{N}}}
+\newcommand{\real}{\ensuremath{\mathbb{R}}}
 
 \newcommand{\regleset}{\ensuremath{\mathcal{R}}}
 
@@ -227,7 +229,7 @@ L'algorithme \ref{Algorithme1} représente le déroulement global de la construc
 \section{Critères de division}
 L'objectif principal d'un critère de division est de maximiser l'homogénéité d'un nœud, et ce, en choisissant l'attribut approprié sur lequel diviser l'ensemble de données.\\
 \subsection{Formalisation}
-\begin{definition}[Homogénéité]
+\begin{definition}[Ensemble de tuples homogène]
   Soit $T\subseteq\tupleset$ un ensemble de tuples et soit $Y$ l'attribut de classe.
 $T$ est \emph{homogène} si:
 $$\forall t, t'\in T, t(Y)=t'(Y)$$
@@ -245,18 +247,30 @@ $$T_{d_i} = \{ t\in T \mid f(t(X)) = d_i \}$$
 \begin{definition}[Critère de division]
 %Soit $\tupleset(\attributset, C)$ un ensemble de tuples, caractérisé par : \\
 %Soit $\tupleset=t_{i,\dots,n}$ un ensemble de tuples, caractérisé par : \\
-Soit $T\subseteq\tupleset$ un ensemble de tuples et $\set{X}$ un ensemble des attributs.
+Soit $\set{X}$ un ensemble d'attributs et $D$ un ensemble fini.
+Un critère de division est de la forme $(eval,choice,homogeneite)$ tel que:
+\begin{itemize}
+\item $eval: \attributset\rightarrow (\valeurset\rightarrow D)$ associe à chaque attribut une fonction de placement d'une valeur dans un panier.
+\item $choice: 2^\tupleset\times 2^\attributset \rightarrow \attributset$ permet de choisir un attribut en fonction d'un ensemble de tuples et d'un ensemble d'attributs.
+\item $homogeneite: 2^{2^\tupleset}\rightarrow\real$ définit une notion d'homogénéité sur une partition (résultant d'une division) d'un ensemble de tuples initial.
+\end{itemize}
+telles que si $choice(T,\set{X}) = X$, et si $f = eval(X)$  alors:
+\begin{itemize}
+\item $\forall X' $avec $(n',f')=eval(X')$, $homogeneite(division(T,f',X')) \leq homogeneite(division(T,f,X))$
+\end{itemize}
+
+% Soit $T\subseteq\tupleset$ un ensemble de tuples et $\set{X}$ un ensemble des attributs.
 
 
 
-On défini les fonctions : \\
-\begin{tabular}{l}
-$chercherAttributDivision(\tupleset,\attributset) = \attributset_i$ \\
-$diviser(\tupleset,\attributset_i) = \set X_{ij(j=2,\dots,n)}$\\
-\end{tabular}
-\\Tel que $\set X_{ij}$ représente les $j$ sous ensembles résultant de la division de $\tupleset$ par rapport à $At_i$\\
-La fonction $chercherAttributDivision$ permet de satisfaire la propriété d'homogénéité, tel que :\\
-$\forall{\set X_{m}} \subset \tupleset, i\neq m, homogeneite(\set X_i\_) \geq homogeinite(\set X_m\_)$
+% On défini les fonctions : \\
+% \begin{tabular}{l}
+% $chercherAttributDivision(\tupleset,\attributset) = \attributset_i$ \\
+% $diviser(\tupleset,\attributset_i) = \set X_{ij(j=2,\dots,n)}$\\
+% \end{tabular}
+% \\Tel que $\set X_{ij}$ représente les $j$ sous ensembles résultant de la division de $\tupleset$ par rapport à $At_i$\\
+% La fonction $chercherAttributDivision$ permet de satisfaire la propriété d'homogénéité, tel que :\\
+% $\forall{\set X_{m}} \subset \tupleset, i\neq m, homogeneite(\set X_i\_) \geq homogeinite(\set X_m\_)$
 \end{definition}
 
 Il existe plusieurs critères, c'est en grande partie ce qui différencie les algorithmes d'arbres de décision, nous allons détailler les plus utilisés d'entre eux, en utilisant de manière commune le jeu de données suivant :
