@@ -48,6 +48,7 @@
 \newcommand{\arbreset}{\ensuremath{\mathcal{A}}}
 \newcommand{\classeset}{\ensuremath{\mathcal{Y}}}
 \newcommand{\attributset}{\ensuremath{\mathcal{AT}}}
+\newcommand{\valeurset}{\ensuremath{\mathcal{V}}}
 
 \newcommand{\regleset}{\ensuremath{\mathcal{R}}}
 
@@ -143,7 +144,7 @@ Faisant partie des méthodes de classification supervisées, le but des arbres d
 \subsection{Formalisation}
 \label{sec:formalisation}
 
-Soit $\tupleset$ l'ensemble des tuples possibles et $\classeset$ l'ensemble des valeurs de classes.
+Soit $\tupleset$ l'ensemble des tuples possibles, $\valeurset$ l'ensemble des valeurs et $\classeset$ l'ensemble des valeurs de classes.
 
 \begin{definition}[Condition sur un tuple]
   Une condition $C$ est une fonction $\tupleset\rightarrow\{true,false\}$.
@@ -227,21 +228,27 @@ L'algorithme \ref{Algorithme1} représente le déroulement global de la construc
 L'objectif principal d'un critère de division est de maximiser l'homogénéité d'un nœud, et ce, en choisissant l'attribut approprié sur lequel diviser l'ensemble de données.\\
 \subsection{Formalisation}
 \begin{definition}[Homogénéité]
-Soit $\tupleset_i(\attributset{ij}, Y_{i})$ l'ensemble de tuple $i$ caractérisé par : \\
-\begin{center}
-\begin{tabular}{l}
-$\attributset_{ij} = \{At_1,\dots,At_j\}$ : Ensemble de j attribut\\
-$Y_{i}$ : Attribut de classe
-\end{tabular}
+  Soit $T\subseteq\tupleset$ un ensemble de tuples et soit $Y$ l'attribut de classe.
+$T$ est \emph{homogène} si:
+$$\forall t, t'\in T, t(Y)=t'(Y)$$
 \end{center}
-$\tupleset_{ij}$ est dit homogène si : $\forall{t_j}\forall{t_k} : t_ij(Y) = t_iks(Y)$ 
+%$\tupleset_{ij}$ est dit homogène si : $\forall{t_j}\forall{t_k} : t_ij(Y) = t_iks(Y)$ 
 
+\end{definition}
+
+\begin{definition}[Division par un attribut et une fonction]
+  Soit $T\subseteq\tupleset$ un ensemble de tuples, soit $D$ un ensemble fini et soit $f: \valeurset\rightarrow D$.
+  La division de $T$ par $f$ et $X$, notée $division(T,f,X)$ est l'ensemble $\{T_{d_1},\dots,T_{d_n}\}$ tel que:
+$$T_{d_i} = \{ t\in T \mid f(t(X)) = d_i \}$$
 \end{definition}
 
 \begin{definition}[Critère de division]
 %Soit $\tupleset(\attributset, C)$ un ensemble de tuples, caractérisé par : \\
 %Soit $\tupleset=t_{i,\dots,n}$ un ensemble de tuples, caractérisé par : \\
-Soit $\tupleset$ un ensemble de tuple
+Soit $T\subseteq\tupleset$ un ensemble de tuples et $\set{X}$ un ensemble des attributs.
+
+
+
 On défini les fonctions : \\
 \begin{tabular}{l}
 $chercherAttributDivision(\tupleset,\attributset) = \attributset_i$ \\
