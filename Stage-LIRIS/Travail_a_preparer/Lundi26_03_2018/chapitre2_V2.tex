@@ -233,8 +233,19 @@ L'objectif principal d'un critère de division est de maximiser l'homogénéité
   Soit $T\subseteq\tupleset$ un ensemble de tuples et soit $Y$ l'attribut de classe.
 $T$ est \emph{homogène} si:
 $$\forall t, t'\in T, t(Y)=t'(Y)$$
+<<<<<<< HEAD
+%$\tupleset_{ij}$ est dit homogène si : $\forall{t_j}\forall{t_k} : t_ij(Y) = t_iks(Y)$ 
+=======
+\end{center}
 %$\tupleset_{ij}$ est dit homogène si : $\forall{t_j}\forall{t_k} : t_ij(Y) = t_iks(Y)$ 
 
+\end{definition}
+>>>>>>> 351f1cc4c861856cb1444e69f81996a154a06787
+
+\begin{definition}[Division par un attribut et une fonction]
+  Soit $T\subseteq\tupleset$ un ensemble de tuples, soit $D$ un ensemble fini et soit $f: \valeurset\rightarrow D$.
+  La division de $T$ par $f$ et $X$, notée $division(T,f,X)$ est l'ensemble $\{T_{d_1},\dots,T_{d_n}\}$ tel que:
+$$T_{d_i} = \{ t\in T \mid f(t(X)) = d_i \}$$
 \end{definition}
 
 \begin{definition}[Division par un attribut et une fonction]
